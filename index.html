@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <script src="./scripts/gitAvatar.js"></script>
+  <script src="./scripts/browserInfo.js"></script>
+  <script src="./scripts/circleDrow.js"></script>
+
+  <title>Test Module</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<style>
+  body {
+    /*background: #FFEFD5;*/
+  }
+</style>
+
+<body>
+
+  <div>
+    <div align="center">
+      <button id="browser" onclick=runBrow() style = "background-color: #FFA07A"> Browser and OS </button>
+      <button id="avatar" onclick=runAvatar() style = "background-color: #FFA07A"> GitHub user Avatar </button>
+      <button id="round" onclick=runCircle(100) style = "background-color: #FFA07A"> Run Circle </button>
+    </div>
+  </div>
+
+  <div id="hid" align="center">
+    <hr id="upperHr">
+    <text id="elem"><b>Test Module is there</b></text>
+    <hr id="bottomHr">
+  </div>
+
+  <script>
+    setInterval(() => {
+      if(hid.querySelector("hr")) {
+        for (let line of hid.querySelectorAll("hr"))
+          line.remove()
+
+      } else {
+        let line = document.createElement("hr");
+        line.id = "upperHr";
+        document.body.children[1].prepend(line);
+
+        line = document.createElement("hr");
+        line.id = "bottomHr";
+        document.body.children[1].append(line);
+      }
+
+      elem.hidden = !elem.hidden;
+    }, 1250);
+  </script>
+</body>
+
+</html>
