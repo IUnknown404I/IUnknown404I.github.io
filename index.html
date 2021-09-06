@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <script src="./scripts/gitAvatar.js"></script>
+  <script src="./scripts/browserInfo.js"></script>
+  <script src="./scripts/circleDrow.js"></script>
+  <script src="./scripts/picChange.js"></script>
+  <script src="./scripts/others.js"></script>
+
+  <title>Test Module</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+<div id="side" class="sidebar">
+  <a href="https://github.com/IUnknown404I/IUnknown404I.github.io">Git Rep</a>
+  <a href="https://learn.javascript.ru/">JS</a>
+  <a href="https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8">React</a>
+  <a href="https://www.youtube.com/c/VladilenMinin/playlists">Any</a>
+  <a href="javascript:void(0)" onclick="closeOropenNav()">Close</a>
+</div>
+<div id="sideOpen" hidden>
+  <a href="javascript:void(0)" onclick="closeOropenNav()"><strong><<</strong></a>
+</div>
+
+<div class="main">
+    <div class="header"><p>$ <strong style="color: cadetblue">JS Sketches</strong> are presented here $</p></div>
+
+    <div id="imgBut" align="center" style="height: 40px">
+      <button onclick="picInfoVisible(event)">Collapse Pic Table</button>
+    </div>
+
+    <div class="pics" align="center">
+      <p><img id="mainImg" src="./pic/arrays-objs-functions.png"></p>
+
+      <ul id="picInfo" >
+        <li>
+          <a href="./pic/document-object-model-1.png"><img src="./pic/document-object-model-1-thumb.png"></a>
+        </li>
+        <li>
+          <a href="./pic/arrays-objs-functions.png"><img src="./pic/arrays-objs-functions-thumb.png"></a>
+        </li>
+        <li>
+          <a href="./pic/dom-elements-navigation.png"><img src="./pic/dom-elements-navigation-thumb.png"></a>
+        </li>
+        <li>
+          <a href="./pic/coords.png"><img src="./pic/coords-thumb.png"></a>
+        </li>
+      </ul>
+      <br><hr>
+    </div>
+
+
+    <div class="out" id="out" align="center">
+      <button id="browser" onclick=runBrow()> Browser and OS </button>
+      <button id="avatar" onclick=runAvatar()> GitHub User Avatar </button>
+      <button id="round" onclick=runCircle(100)> Draw Abs Circle </button>
+    </div>
+</div>
+
+
+  <div class="testMessage" id="hid" style="background: lightyellow; text-align: center">
+    <hr id="upperHr">
+    <text id="elem"><b>Test Module</b></text>
+    <hr id="bottomHr">
+  </div>
+
+  <text id="rnSignature">by <strong style="color: cadetblue;">RN</strong></text>
+
+  <script>
+    setInterval(() => {
+      if(hid.querySelector("hr")) {
+        for (let line of hid.querySelectorAll("hr"))
+          line.remove()
+
+      } else {
+        let line = document.createElement("hr");
+        line.id = "upperHr";
+        hid.prepend(line);
+
+        line = document.createElement("hr");
+        line.id = "bottomHr";
+        hid.append(line);
+      }
+
+      elem.hidden = !elem.hidden;
+      hid.hidden = !hid.hidden;
+    }, 1250);
+  </script>
+
+  <script>
+    let wid = +document.documentElement.clientWidth - 9.5 + 'px';
+    document.body.querySelector('.header').setAttribute("style",`width:${wid}`);
+
+
+    setInterval(() => {
+      wid = +document.documentElement.clientWidth - 9.5 + 'px';
+      document.body.querySelector('.header').setAttribute("style",`width:${wid}`);
+
+      if(!document.getElementById("sideOpen").hidden)
+        document.getElementById("sideOpen").style.left = document.documentElement.clientWidth - 38 + 'px';
+    }, 400)
+
+    setInterval(() => {
+      document.body.style.height = document.documentElement.scrollHeight - 10 + 'px';
+      // document.documentElement.style.minHeight = '100%';
+
+      document.body.querySelector('#rnSignature').style.top = document.documentElement.scrollHeight - 22 + 'px';
+    }, 100);
+  </script>
+
+  <script>picInfo.onclick = picChange</script>
+</body>
+
+</html>
