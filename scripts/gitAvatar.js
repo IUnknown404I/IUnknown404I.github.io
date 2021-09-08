@@ -8,7 +8,6 @@ function loadGithubUser(name) {
 function showAvatar(githubUser) {
   return new Promise(function(resolve, reject) {
     let separate = document.createElement('hr');
-    // separate.style.marginTop = 22 + 'px';
     out.append(separate);
 
     let img = document.createElement('img');
@@ -19,6 +18,8 @@ function showAvatar(githubUser) {
     img.className = "gitAvatar";
 
     out.append(img);
+
+    setTimeout(() => img.scrollIntoView(false), 40);
 
     setTimeout(() => {
       img.remove();

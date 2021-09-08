@@ -8,6 +8,7 @@
   <script src="./scripts/browserInfo.js"></script>
   <script src="./scripts/circleDrow.js"></script>
   <script src="./scripts/picChange.js"></script>
+  <script src="./scripts/tracking.js"></script>
   <script src="./scripts/others.js"></script>
 
   <title>Test Module</title>
@@ -30,52 +31,113 @@
 
 <body>
 
-<div id="side" class="sidebar">
-  <a href="https://github.com/IUnknown404I/IUnknown404I.github.io">Git</a>
-  <a href="https://learn.javascript.ru/">JS</a>
-  <a href="https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8">React</a>
+  <div id="side" class="sidebar">
+  <a href="https://github.com/IUnknown404I/IUnknown404I.github.io" style="color: blueviolet">Git</a>
+  <a href="https://learn.javascript.ru/" style="color: blueviolet">JS</a>
+  <a href="https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8" style="color: blueviolet">React</a>
+  <hr>
+  <a href="https://plnkr.co/" style="color: coral">Plunker</a>
+  <hr>
+  <a href="http://htmlbook.ru/html">HTML</a>
+  <a href="https://webref.ru/css">CSS</a>
+  <a href="https://html5book.ru/osnovy-css/">H\C Book</a>
+  <hr>
   <a href="https://www.youtube.com/c/VladilenMinin/playlists">Any</a>
-  <a href="javascript:void(0)" onclick="closeOropenNav()">Close</a>
+  <hr>
+  <a href="javascript:void(0)" onclick="closeOropenNav()" style="color: red; margin-left: 7px; margin-bottom: 5px; padding: 0;">Close</a>
 </div>
-<div id="sideOpen" hidden>
-  <a href="javascript:void(0)" onclick="closeOropenNav()"><strong><<</strong></a>
-</div>
+  <div id="sideOpen" hidden>
+    <a href="javascript:void(0)" style="color: blueviolet; font-size: 26px;" onclick="closeOropenNav()"><strong><<</strong></a>
+  </div>
 
 <div class="main">
-    <div class="header"><p>$ <strong style="color: cadetblue">JS Sketches</strong> are presented here $</p></div>
 
-    <div id="imgBut" align="center" style="height: 40px">
-      <button onclick="picInfoVisible(event)">Collapse Pic Table</button>
-    </div>
+  <div class="header"><p>$ <strong style="color: cadetblue">JS Sketches</strong> are presented here $</p></div>
 
-    <div class="pics" align="center">
-      <p><img id="mainImg" src="./pic/arrays-objs-functions.png"></p>
+  <div id="imgBut" align="center" style="height: 40px">
+    <button onclick="picInfoVisible(event)">Collapse Pic Table</button>
+  </div>
+
+  <div class="pics" align="center">
+      <p><img id="mainImg" src="./pic/default.png"></p>
 
       <ul id="picInfo">
         <li>
-          <a href="./pic/document-object-model-1.png"><img src="./pic/document-object-model-1-thumb.png"></a>
+          <a href="./pic/document-object-model-1.png"><img src="./pic/heredity.png"></a>
         </li>
         <li>
-          <a href="./pic/arrays-objs-functions.png"><img src="./pic/arrays-objs-functions-thumb.png"></a>
+          <a href="./pic/arrays-objs-functions.png"><img src="./pic/obj.png"></a>
         </li>
         <li>
-          <a href="./pic/dom-elements-navigation.png"><img src="./pic/dom-elements-navigation-thumb.png"></a>
+          <a href="./pic/dom-elements-navigation.png"><img src="./pic/dom.png"></a>
         </li>
         <li>
-          <a href="./pic/coords.png"><img src="./pic/coords-thumb.png"></a>
+          <a href="./pic/coords.png"><img src="./pic/size.png"></a>
+        </li>
+        <li>
+          <a href="./pic/tasks.png"><img src="./pic/tasks-thumb.png"></a>
         </li>
       </ul>
       <br><hr>
     </div>
 
+  <div align="center" style="margin-top: 25px">
+    <div class="track">
+      <div id="trackExample">
+        <h3>Tracking example </h3>
+        <p style="height: 700px"></p>
+      </div>
 
-    <div class="out" id="out" align="center">
-      <button id="browser" onclick=runBrow()> Browser and OS </button>
-      <button id="avatar" onclick=runAvatar()> GitHub User Avatar </button>
-      <button id="round" onclick=runCircle(100)> Draw Abs Circle </button>
+      <div id="trackInfo" style="margin-left: 2px;">
+        <text><strong>Client Mouse Coords: </strong><span id="mouseCoords"> swipe over the field from above</span></text>
+      </div>
     </div>
-</div>
 
+    <div class="dragMouse">
+      <div id="parent" onmouseover="mouseLog(event)" onmouseout="mouseLog(event)">parent
+        <div id="child">child</div>
+      </div>
+
+      <textarea id="dragText" readonly></textarea>
+      <fieldset id="options" style="display: inline-block;">
+        <legend>#options</legend>
+        <input type="checkbox" checked name="overout" onchange="onRadioChange(event)"> Over&Out
+        <input type="checkbox" name="enterleave" onchange="onRadioChange(event)"> Enter&Leave
+      </fieldset>
+      <input type="button" onclick="dragText.value=''" value="Очистить" style="margin: 5px; display: inline-block; vertical-align: top; margin-top: 20px;">
+    </div>
+
+    <hr style="margin-top: 25px">
+
+    <div>
+      <div align="center" style="font: bold 18px sans-serif; margin-top: 25px; margin-bottom: 10px;"><strong><ins>Move the appropriate JS entries to the right:</ins></strong></div>
+
+      <div class="dragAndDrop_container">
+
+        <div align="center" class="dragAndDrop_itemsContainer droppable">
+          <div class="item draggable">V8 Engine</div>
+          <div class="item draggable">Strict type Safety</div>
+          <div class="item draggable">Rhino Engine</div>
+          <div class="item draggable">OOP methodology</div>
+          <div class="item draggable">OS Interaction</div>
+          <div class="item draggable">JVM</div>
+        </div>
+        <div align="center" class="dragAndDrop_chooses droppable"></div>
+
+      </div>
+
+      <button style="background: #E0FFFF; font-size: 14px;" onclick="onDragAndDropButClick(event)">Confirm</button>
+    </div>
+
+    <hr style="margin-top: 25px">
+
+  </div>
+
+  <div class="out" id="out" align="center">
+    <button id="browser" onclick=runBrow()> Browser and OS </button>
+    <button id="avatar" onclick=runAvatar()> GitHub User Avatar </button>
+    <button id="round" onclick=runCircle(100)> Draw Abs Circle </button>
+  </div>
 
   <div class="testMessage" id="hid" style="background: lightyellow; text-align: center">
     <hr id="upperHr">
@@ -84,6 +146,8 @@
   </div>
 
   <text id="rnSignature">by <strong style="color: cadetblue;">RN</strong></text>
+
+</div>
 
   <script>
     setInterval(() => {
@@ -116,7 +180,7 @@
       document.body.querySelector('.header').setAttribute("style",`width:${wid}`);
 
       if(!document.getElementById("sideOpen").hidden)
-        document.getElementById("sideOpen").style.left = document.documentElement.clientWidth - 38 + 'px';
+        document.getElementById("sideOpen").style.left = document.documentElement.clientWidth - 43 + 'px';
     }, 400)
 
     setInterval(() => {
@@ -128,6 +192,16 @@
   </script>
 
   <script>picInfo.onclick = picChange</script>
+  <script>trackInfoElements()</script>
+  <script src="./scripts/dragAndDrop.js"></script>
+
+<!--  <script>-->
+<!--    setInterval(() => {-->
+<!--      let drag = document.querySelector('.dragMouse');-->
+<!--      drag.height = document.querySelector('.track').height;-->
+<!--      console.log(drag.height)-->
+<!--    }, 1000)-->
+<!--  </script>-->
 </body>
 
 </html>

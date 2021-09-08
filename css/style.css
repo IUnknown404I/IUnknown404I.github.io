@@ -37,17 +37,27 @@ hr {
   max-width: 90%;
 }
 
+.track , .dragMouse {
+  display: inline-block;
+  vertical-align: top;
+  outline: 2px solid #666;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 46.5%;
+}
+
 .sidebar, #sideOpen{
   top: 0;
   height: auto;
-  width: auto;
-  max-width: 14%;
+  width: 76px;
+  /*max-width: 14%;*/
   position: fixed;
   z-index: 1;
-  left: 85%;
+  left: calc(100% - 84px);
   overflow-x: hidden;
   padding: 2px 0;
-  border: 3.5px ridge cadetblue;
+  border: 4px ridge cadetblue;
   background: #E0FFFF;
 }
 
@@ -58,14 +68,13 @@ hr {
   color: blue; /*2196F3*/
   display: block;
 }
-.sidebar a:hover, #sideOpen a:hover {
+.sidebar a:hover, a:hover {
   color: black;
 }
 
 #sideOpen {
   top: 5px;
-  right: 5px;
-  left: 95%;
+  right: 10px;
   background: none;
   border: none;
 }
@@ -84,7 +93,11 @@ hr {
   font: italic 20px sans-serif;
   border-bottom: 5px ridge cadetblue;
   background: #E0FFFF;
+}
 
+.key {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .main {
@@ -95,24 +108,29 @@ hr {
 .pics {
   position: relative;
   margin-top: 16.5px;
+  margin-right: 5px;
+  margin-left: -5px;
 
   text-align:center;
 }
+
 .out {
   position: relative;
   /*top: 25px;*/
-  margin-top: 25px;
+  margin-top: 0;
 }
 
 .testMessage {
   position: fixed;
   width: 90px;
   margin: 2px;
-  border: 3px ridge gold;
+  border: 3px ridge cadetblue;
   border-radius: 20px;
 }
 
 .gitAvatar {
+  max-width: 93%;
+  margin-left: -5px;
   margin-top: 22px;
   margin-bottom: 22px;
   border: 1.5px solid #FF9900;
@@ -132,6 +150,48 @@ hr {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   border-radius: 50%;
+  z-index: 9;
+}
+
+.dragAndDrop_container {
+  display: flex;
+  justify-content: center;
+  /*border: 2px solid #666;*/
+  margin: 15px 5px;
+}
+.dragAndDrop_itemsContainer, .dragAndDrop_chooses {
+  /*position: relative;*/
+  margin: 5px 5px;
+  /*display: inline-block;*/
+  /*vertical-align: top;*/
+  width: 40%;
+  height: 380px;
+  max-width: 200px;
+  border: 3px ridge cadetblue;
+  border-radius: 3px;
+}
+
+.dragAndDrop_chooses {
+  background: #99C0C3;
+}
+
+.dragAndDrop_itemsContainer {
+  background: #99C0C3;
+}
+
+.item {
+  font-size: 17px;
+  position: relative;
+  width: 110px;
+  padding: 9px 2px;
+  margin-left: -5px;
+  margin-bottom: 10px;
+  border: 4px ridge cadetblue;
+  border-radius: 25%;
+  text-align: center;
+  /*align-self: start;*/
+  background: #E0FFFF;
+  cursor: pointer;
 }
 
 #mainImg {
@@ -179,4 +239,49 @@ hr {
   bottom: 5px;
   left: 6.5px;
   font: italic 16px sans-serif;
+}
+
+#trackInfo h3, h4 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+#parent {
+  outline: 1px solid #666;
+  background: #99C0C3;
+  width: 75%;
+  height: 250px;
+  position: relative;
+}
+
+#child {
+  background: #FFDE99;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#dragText {
+  margin-top: 10px;
+  height: 200px;
+  width: 90%;
+  max-width: 550px;
+  display: block;
+  resize: none;
+}
+
+#trackExample {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  overflow: auto;
+  border: 10px solid black;
+  border-radius: 10px;
+  width: calc(100% - 50px);
+  max-width: 650px;
+  height: 300px;
+  padding: 10px
 }
