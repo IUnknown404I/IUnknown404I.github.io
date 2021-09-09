@@ -42,22 +42,31 @@ function onRadioChange(event) {
 function onDragAndDropButClick(event) {
   let result = true;
   let trueItems = document.body.querySelectorAll('.dragAndDrop_chooses > .item');
+  let falseOnes = [];
 
-  if(trueItems.length == 3)
+  if(trueItems.length !== 0)
     trueItems.forEach(element => {
       if(element.innerHTML !== 'V8 Engine' && element.innerHTML !== 'Rhino Engine' &&
-          element.innerHTML !== 'OOP methodology') result = false;
-      console.log(element.innerHTML);
-      console.log(result);
+          element.innerHTML !== 'OOP methodology') {
+        result = false;
+        falseOnes.push(element.innerHTML);
+      }
     });
-  else result = false;
+  if(trueItems.length !== 3) result = false;
 
   let divResult = document.createElement('div');
-
+  console.log(falseOnes);
   divResult.id = "resultDrag";
   divResult.style.font = "bold 16px sans-serif";
-  divResult.style.color = "darkorange";
-  divResult.innerHTML = result ? "Congratulations! You are right!" : "Try again. So far, this is not true.";
+  divResult.innerHTML = result ? "<text style='color: darkorange'>Congratulations!</text> You are right!" : "<text style='color: darkorange'>Try again.</text> So far, this is not true.";
+  divResult.style.marginBottom = "25px";
+  if(!result && falseOnes.length !== 0) {
+    divResult.innerHTML += "<br>Mistakes:";
+    falseOnes.forEach(html => {
+      divResult.innerHTML += " " + html + ",";
+    });
+    divResult.innerHTML = divResult.innerHTML.substring(0, divResult.innerHTML.length-1) + ".";
+  }
 
   if(event.target.parentNode.querySelector('#resultDrag'))
     event.target.parentNode.querySelector('#resultDrag').remove();

@@ -83,8 +83,6 @@ document.addEventListener('pointerdown', function(event) {
         if(currentDroppable) {
             leaveReciever(currentDroppable);
             currentDroppable.append(event.target);
-
-            currentDroppable = null;
         } else {
             parentDroppable.append(event.target);
         }
@@ -107,24 +105,22 @@ document.addEventListener('pointerdown', function(event) {
 
             if (scrollY < 0) scrollY = 0;
 
-            console.log(`docBottom: ${docBottom}; newBottom: ${newBottom}; scrollY: `+scrollY);
+            // console.log(`docBottom: ${docBottom}; newBottom: ${newBottom}; scrollY: `+scrollY);
 
             window.scrollBy(0, scrollY);
 
             newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
-            console.log("newY: "+newY);
         }
 
         if (newY < 0) {
             let scrollY = Math.min(-newY, 10);
             if (scrollY < 0) scrollY = 0;
-            console.log(scrollY);
 
             window.scrollBy(0, -scrollY);
             newY = Math.max(newY, 0);
         }
 
-        if (newX < 0) newX = 0;
+        if (newX < 8) newX = 8;
         if (newX > document.documentElement.clientWidth - dragElement.offsetWidth) {
             newX = document.documentElement.clientWidth - dragElement.offsetWidth;
         }
@@ -135,6 +131,7 @@ document.addEventListener('pointerdown', function(event) {
 
     function enterReciever(elem) {
         elem.style.background = 'lightgreen';
+        console.log('Enter reciever: ' + elem +" "+ elem.className);
     }
 
     function leaveReciever(elem) {
