@@ -13,18 +13,11 @@
 
   <title>Test Module</title>
 
-  <meta name="description" content="">
+  <meta name="description" content="test js">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="./pic/js.svg">
 
   <meta name="theme-color" content="#fafafa">
 </head>
@@ -32,11 +25,11 @@
 <body>
 
   <div id="side" class="sidebar">
-  <a href="https://github.com/IUnknown404I/IUnknown404I.github.io" style="color: blueviolet">Git</a>
-  <a href="https://learn.javascript.ru/" style="color: blueviolet">JS</a>
-  <a href="https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8" style="color: blueviolet">React</a>
+  <a class="viol" href="https://github.com/IUnknown404I/IUnknown404I.github.io">Git</a>
+  <a class="viol" href="https://learn.javascript.ru/">JS</a>
+  <a class="viol" href="https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8">React</a>
   <hr>
-  <a href="https://plnkr.co/" style="color: coral">Plunker</a>
+  <a class="coral" href="https://plnkr.co/">Plunker</a>
   <hr>
   <a href="http://htmlbook.ru/html">HTML</a>
   <a href="https://webref.ru/css">CSS</a>
@@ -44,10 +37,10 @@
   <hr>
   <a href="https://www.youtube.com/c/VladilenMinin/playlists">Any</a>
   <hr>
-  <a href="javascript:void(0)" onclick="closeOropenNav()" style="color: red; margin-left: 7px; margin-bottom: 5px; padding: 0;">Close</a>
+  <a class="red" href="javascript:void(0)" onclick="closeOropenNav()">Close</a>
 </div>
   <div id="sideOpen" hidden>
-    <a href="javascript:void(0)" style="color: blueviolet; font-size: 26px;" onclick="closeOropenNav()"><strong><<</strong></a>
+    <a href="javascript:void(0)" onclick="closeOropenNav()"><<</a>
   </div>
 
 <div class="main">
@@ -178,9 +171,6 @@
     setInterval(() => {
       wid = +document.documentElement.clientWidth - 9.5 + 'px';
       document.body.querySelector('.header').setAttribute("style",`width:${wid}`);
-
-      if(!document.getElementById("sideOpen").hidden)
-        document.getElementById("sideOpen").style.left = document.documentElement.clientWidth - 43 + 'px';
     }, 400)
 
     setInterval(() => {

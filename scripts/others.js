@@ -7,8 +7,6 @@ function picInfoVisible(event) {
 function closeOropenNav() {
   document.getElementById("side").hidden = !document.getElementById("side").hidden;
   document.getElementById("sideOpen").hidden = !document.getElementById("sideOpen").hidden;
-
-  document.getElementById("sideOpen").style.left = document.documentElement.clientWidth - 38 + 'px';
 }
 
 function mouseLog(event) {

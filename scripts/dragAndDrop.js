@@ -26,12 +26,13 @@ document.addEventListener('pointerdown', function(event) {
         event.target.hidden = true;
         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
         event.target.hidden = false;
-        let dropReceiver = elemBelow.closest('.droppable');
 
         if (!elemBelow) return;
 
+        let dropReceiver = elemBelow.closest('.droppable');
+
         if(currentDroppable !== dropReceiver) {
-            if(currentDroppable != null) {
+            if(currentDroppable) {
                 leaveReciever(currentDroppable);
             }
 
@@ -56,6 +57,7 @@ document.addEventListener('pointerdown', function(event) {
 
         element.style.position = 'fixed';
         element.style.zIndex = '9999';
+        document.body.append(element);
 
         moveAt(clientX, clientY);
     }
@@ -87,7 +89,6 @@ document.addEventListener('pointerdown', function(event) {
             parentDroppable.append(event.target);
         }
 
-
         document.removeEventListener('pointermove', onPointerMove);
         dragElement.removeEventListener('pointerup', onPointerUp);
     }
@@ -104,8 +105,6 @@ document.addEventListener('pointerdown', function(event) {
             let scrollY = Math.min(docBottom - newBottom, 10);
 
             if (scrollY < 0) scrollY = 0;
-
-            // console.log(`docBottom: ${docBottom}; newBottom: ${newBottom}; scrollY: `+scrollY);
 
             window.scrollBy(0, scrollY);
 
@@ -131,11 +130,12 @@ document.addEventListener('pointerdown', function(event) {
 
     function enterReciever(elem) {
         elem.style.background = 'lightgreen';
-        console.log('Enter reciever: ' + elem +" "+ elem.className);
+        // console.log('Enter reciever: ' + elem +" "+ elem.className);
     }
 
     function leaveReciever(elem) {
         elem.style.background = '';
+        // console.log('Leave reciever: ' + elem +" "+ elem.className);
     }
 
 });
