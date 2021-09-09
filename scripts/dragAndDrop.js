@@ -1,6 +1,6 @@
 let isDragging = false;
 
-document.addEventListener('mousedown', function(event) {
+document.addEventListener('pointerdown', function(event) {
     let dragElement = event.target.closest('.draggable');
     let parentDroppable = event.target.parentNode;
     let currentDroppable = null;
@@ -17,10 +17,10 @@ document.addEventListener('mousedown', function(event) {
     startDrag(dragElement, event.clientX, event.clientY);
 
 
-    function onMouseUp(event) {
+    function onPointerUp(event) {
         finishDrag(event);
     }
-    function onMouseMove(event) {
+    function onPointerMove(event) {
         moveAt(event.clientX, event.clientY);
 
         event.target.hidden = true;
@@ -42,17 +42,14 @@ document.addEventListener('mousedown', function(event) {
         }
     }
 
-    // в начале перемещения элемента:
-    //   запоминаем место клика по элементу (shiftX, shiftY),
-    //   переключаем позиционирование элемента (position:fixed) и двигаем элемент
     function startDrag(element, clientX, clientY) {
         if(isDragging) {
             return;
         }
         isDragging = true;
 
-        document.addEventListener('mousemove', onMouseMove);
-        element.addEventListener('mouseup', onMouseUp);
+        document.addEventListener('pointermove', onPointerMove);
+        element.addEventListener('pointerup', onPointerUp);
 
         shiftX = clientX - element.getBoundingClientRect().left;
         shiftY = clientY - element.getBoundingClientRect().top;
@@ -61,10 +58,8 @@ document.addEventListener('mousedown', function(event) {
         element.style.zIndex = '9999';
 
         moveAt(clientX, clientY);
-    };
+    }
 
-    // переключаемся обратно на абсолютные координаты
-    // чтобы закрепить элемент относительно документа
     function finishDrag(event) {
         if(!isDragging) {
             return;
@@ -72,11 +67,16 @@ document.addEventListener('mousedown', function(event) {
 
         isDragging = false;
         dragElement.style.position = 'relative';
-        dragElement.style.zIndex = '1';
+        dragElement.style.zIndex = '0';
         dragElement.style.top = '0';
         dragElement.style.right = '0';
         dragElement.style.left = '0';
-        dragElement.style.marginTop = '3.5px';
+        dragElement.style.marginTop = '10px';
+        dragElement.style.marginBottom = '10px';
+        if(currentDroppable)
+            dragElement.style.marginLeft = '5px';
+        else if(parentDroppable)
+            dragElement.style.marginLeft = '0';
 
         // dragElement.style.top = parseInt(dragElement.style.top) + pageYOffset + 'px';
 
@@ -90,55 +90,40 @@ document.addEventListener('mousedown', function(event) {
         }
 
 
-        document.removeEventListener('mousemove', onMouseMove);
-        dragElement.removeEventListener('mouseup', onMouseUp);
+        document.removeEventListener('pointermove', onPointerMove);
+        dragElement.removeEventListener('pointerup', onPointerUp);
     }
 
     function moveAt(clientX, clientY) {
-        // вычисляем новые координаты (относительно окна)
         let newX = clientX - shiftX;
         let newY = clientY - shiftY;
 
-        // проверяем, не переходят ли новые координаты за нижний край окна:
-        // сначала вычисляем гипотетический новый нижний край окна
-        let newBottom = newY + dragElement.offsetHeight;
+        let newBottom = newY + dragElement.offsetHeight + 4;
 
-        // затем, если новый край окна выходит за пределы документа, прокручиваем страницу
         if (newBottom > document.documentElement.clientHeight) {
-            // координата нижнего края документа относительно окна
-            let docBottom = document.documentElement.getBoundingClientRect().bottom;
+            let docBottom = document.body.getBoundingClientRect().bottom;
 
-            // простой скролл документа на 10px вниз имеет проблему -
-            // он может прокручивать документ за его пределы,
-            // поэтому используем Math.min(расстояние до конца, 10)
             let scrollY = Math.min(docBottom - newBottom, 10);
 
-            // вычисления могут быть не совсем точны - случаются ошибки при округлении,
-            // которые приводят к отрицательному значению прокрутки. отфильтруем их:
             if (scrollY < 0) scrollY = 0;
+
+            console.log(`docBottom: ${docBottom}; newBottom: ${newBottom}; scrollY: `+scrollY);
 
             window.scrollBy(0, scrollY);
 
-            // быстрое перемещение мыши может поместить курсор за пределы документа вниз
-            // если это произошло -
-            // ограничиваем новое значение Y максимально возможным исходя из размера документа:
             newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
+            console.log("newY: "+newY);
         }
 
-        // проверяем, не переходят ли новые координаты за верхний край окна (по схожему алгоритму)
         if (newY < 0) {
-            // прокручиваем окно вверх
             let scrollY = Math.min(-newY, 10);
-            if (scrollY < 0) scrollY = 0; // проверяем ошибки точности
+            if (scrollY < 0) scrollY = 0;
+            console.log(scrollY);
 
             window.scrollBy(0, -scrollY);
-            // быстрое перемещение мыши может поместить курсор за пределы документа вверх
-            newY = Math.max(newY, 0); // newY не может быть меньше нуля
+            newY = Math.max(newY, 0);
         }
 
-
-        // ограничим newX размерами окна
-        // согласно условию, горизонтальная прокрутка отсутствует, поэтому это не сложно:
         if (newX < 0) newX = 0;
         if (newX > document.documentElement.clientWidth - dragElement.offsetWidth) {
             newX = document.documentElement.clientWidth - dragElement.offsetWidth;

@@ -20,7 +20,7 @@ body {
 }
 
 button {
-  height: 50px;
+  height: 60px;
   width: 100px;
   padding: 5px;
   background-color: gold;
@@ -192,6 +192,7 @@ hr {
   /*align-self: start;*/
   background: #E0FFFF;
   cursor: pointer;
+  touch-action: none;
 }
 
 #mainImg {
