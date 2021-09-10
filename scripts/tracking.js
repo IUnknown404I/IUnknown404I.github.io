@@ -42,3 +42,5 @@ function events() {
         document.getElementById(prop).innerHTML = value + " ";
     };
 }
+
+trackInfoElements()

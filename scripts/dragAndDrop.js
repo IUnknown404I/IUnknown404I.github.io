@@ -2,12 +2,12 @@ let isDragging = false;
 
 document.addEventListener('pointerdown', function(event) {
     let dragElement = event.target.closest('.draggable');
-    let parentDroppable = event.target.parentNode;
+    let parentDroppable = event.target.closest('.droppable');
     let currentDroppable = null;
 
     if (!dragElement) return;
-    event.preventDefault();
 
+    event.preventDefault();
     dragElement.ondragstart = function() {
         return false;
     };
@@ -22,6 +22,10 @@ document.addEventListener('pointerdown', function(event) {
     }
     function onPointerMove(event) {
         moveAt(event.clientX, event.clientY);
+
+        // if(event.target.tagName === document.documentElement.tagName ||
+        //    event.target.tagName === document.body.tagName) return;
+        if(event.target.tagName !== 'DIV') return;
 
         event.target.hidden = true;
         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);

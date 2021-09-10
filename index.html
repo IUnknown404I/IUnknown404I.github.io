@@ -4,12 +4,13 @@
 <head>
   <meta charset="utf-8">
 
-  <script src="./scripts/gitAvatar.js"></script>
-  <script src="./scripts/browserInfo.js"></script>
-  <script src="./scripts/circleDrow.js"></script>
-  <script src="./scripts/picChange.js"></script>
-  <script src="./scripts/tracking.js"></script>
-  <script src="./scripts/others.js"></script>
+  <script async src="./scripts/gitAvatar.js"></script>
+  <script async src="./scripts/browserInfo.js"></script>
+  <script async src="./scripts/circleDrow.js"></script>
+  <script defer src="./scripts/picChange.js"></script>
+  <script defer src="./scripts/tracking.js"></script>
+  <script async src="./scripts/others.js"></script>
+  <script defer src="./scripts/dragAndDrop.js"></script>
 
   <title>Test Module</title>
 
@@ -54,7 +55,7 @@
   <div class="pics" align="center">
       <p><img id="mainImg" src="./pic/default.png"></p>
 
-      <ul id="picInfo">
+      <ul id="picInfo" onclick="picChange(event)">
         <li>
           <a href="./pic/document-object-model-1.png"><img src="./pic/heredity.png"></a>
         </li>
@@ -163,27 +164,8 @@
     }, 1250);
   </script>
 
-  <script>
-    let wid = +document.documentElement.clientWidth - 9.5 + 'px';
-    document.body.querySelector('.header').setAttribute("style",`width:${wid}`);
-
-
-    setInterval(() => {
-      wid = +document.documentElement.clientWidth - 9.5 + 'px';
-      document.body.querySelector('.header').setAttribute("style",`width:${wid}`);
-    }, 400)
-
-    setInterval(() => {
-      document.body.style.height = document.documentElement.scrollHeight - 10 + 'px';
-      // document.documentElement.style.minHeight = '100%';
-
-      document.body.querySelector('#rnSignature').style.top = document.documentElement.scrollHeight - 22 + 'px';
-    }, 100);
-  </script>
-
-  <script>picInfo.onclick = picChange</script>
-  <script>trackInfoElements()</script>
-  <script src="./scripts/dragAndDrop.js"></script>
+<!--  <script>picInfo.onclick = picChange</script>-->
+<!--  <script>trackInfoElements()</script>-->
 
 <!--  <script>-->
 <!--    setInterval(() => {-->
