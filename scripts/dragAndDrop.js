@@ -25,7 +25,7 @@ document.addEventListener('pointerdown', function(event) {
 
         // if(event.target.tagName === document.documentElement.tagName ||
         //    event.target.tagName === document.body.tagName) return;
-        if(event.target.tagName !== 'DIV') return;
+        if(!event.target.classList.contains('draggable')) return;
 
         event.target.hidden = true;
         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
