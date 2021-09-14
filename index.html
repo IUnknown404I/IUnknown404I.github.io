@@ -11,8 +11,9 @@
   <script defer src="./scripts/tracking.js"></script>
   <script async src="./scripts/others.js"></script>
   <script defer src="./scripts/dragAndDrop.js"></script>
+  <script defer src="scripts/dragAndDropFiles.js"></script>
 
-  <title>Test Module</title>
+  <title><RN> Test Module</title>
 
   <meta name="description" content="test js">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +41,7 @@
   <hr>
   <a class="red" href="javascript:void(0)" onclick="closeOropenNav()">Close</a>
 </div>
-  <div id="sideOpen" hidden>
+  <div id="sideOpen">
     <a href="javascript:void(0)" onclick="closeOropenNav()"><<</a>
   </div>
 
@@ -120,10 +121,25 @@
 
       </div>
 
-      <button style="width: 100px; height: 40px; background: #E0FFFF; font-size: 14px;" onclick="onDragAndDropButClick(event)">Confirm</button>
+      <button id="dragAndDropCheckBut" onclick="onDragAndDropButClick(event)">Confirm</button>
     </div>
 
     <hr style="margin-top: 0">
+
+    <div id="drop-area">
+      <form class="my-form">
+        <p><strong>Upload multiple files</strong> with the file dialog or by dragging and dropping <strong>images</strong> or <strong>.txt</strong> onto this region to see the content.</p>
+        <input type="file" id="fileElem" multiple accept="image/*, text/plain" onchange="handleFiles(this.files)" hidden>
+        <label class="drag-button" for="fileElem">Choose files</label>
+        <label class="drag-button" id="hide-content-button" style="display: none" onclick="contentOut()">Hide content</label>
+        <progress id="progress-bar" max=100 value=0></progress>
+        <span id="progress-bar-error" hidden>Incorrect input!</span>
+      </form>
+
+      <div class="drag-files-out" hidden></div>
+    </div>
+
+    <hr style="margin-top: 40px; margin-bottom: 25px">
 
   </div>
 
