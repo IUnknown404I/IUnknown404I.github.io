@@ -1,0 +1,518 @@
+* {
+  top: 5px;
+  left: 5px;
+}
+
+html, body {
+  /*min-height: 100%;*/
+  /*height: 100%;*/
+  /*height: 1500px;*/
+}
+
+body {
+  top: 0;
+  left: 0;
+  border: 5px ridge cadetblue;
+  margin: 0;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+}
+
+button {
+  height: 60px;
+  width: 100px;
+  padding: 5px;
+  background-color: gold;
+  border-radius: 3.5px;
+  margin-bottom: 22px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: goldenrod;
+}
+
+hr {
+  max-width: 90%;
+}
+
+.track , .dragMouse {
+  display: inline-block;
+  vertical-align: top;
+  outline: 2px solid #666;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 46.5%;
+}
+
+.sidebar {
+  top: 0;
+  height: auto;
+  width: 76px;
+  /*max-width: 14%;*/
+  position: fixed;
+  z-index: 1;
+  left: calc(100% - 84px);
+  overflow-x: hidden;
+  padding: 2px 0;
+  border: 4px ridge cadetblue;
+  background: #E0FFFF;
+  margin-left: 0;
+  transition: margin-left ease-out;
+  transition-duration: 1s;
+}
+
+.sidebar a {
+  padding: 3px 3px 3px 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: blue; /*2196F3*/
+  display: block;
+
+  transition-property: margin-left;
+  transition-duration: 0.5s;
+}
+
+.sidebar .viol {
+  color: blueviolet;
+}
+
+.sidebar .coral {
+  color: coral;
+}
+
+.sidebar .red {
+  color: red;
+  margin-left: 7px;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.sidebar a:hover {
+  margin-left: 7px;
+  color: black;
+}
+
+.sidebar .viol:hover {
+  margin-left: 7px;
+  color: rgb(77,0,153);
+}
+
+.sidebar .coral:hover {
+  margin-left: 3px;
+  color: rgb(179,89,0);
+}
+
+.sidebar .red:hover {
+  margin-left: 15px;
+  color: rgb(153,0,0);
+}
+
+#sideOpen {
+  top: 7px;
+  left: calc(100% - 42px);
+  overflow-x: hidden;
+  position: fixed;
+  width: 45px;
+  height: auto;
+  z-index: 1;
+  margin-left: 45px;
+  transition: margin-left;
+  transition-duration: 0.7s;
+}
+
+#sideOpen a {
+  margin-left: 7px;
+  text-decoration: none;
+  color: blueviolet;
+  font-size: 26px;
+  transition-property: margin-left;
+  transition-duration: 1s;
+}
+
+#sideOpen a:hover {
+  margin-left: 0;
+  font-weight: bold;
+  color: rgb(64,0,77);
+}
+
+#imgBut {
+  position: relative;
+  margin-top: 84.5px;
+}
+
+.header {
+  position: absolute;
+  top: 5px;
+  text-align: center;
+  vertical-align: middle;
+  height: 65px;
+  width: calc(100% - 9.5px);
+  font: italic 20px sans-serif;
+  border-bottom: 5px ridge cadetblue;
+  background: #E0FFFF;
+}
+
+.key {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.key:hover {
+  font-weight: bold;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.pics {
+  position: relative;
+  margin-top: 16.5px;
+  margin-right: 5px;
+  margin-left: -5px;
+
+  text-align:center;
+}
+
+.out {
+  position: relative;
+  /*top: 25px;*/
+  margin-top: 0;
+}
+
+.testMessage {
+  position: fixed;
+  width: 90px;
+  margin: 2px;
+  border: 3px ridge cadetblue;
+  border-radius: 20px;
+}
+
+.gitAvatar {
+  max-width: 93%;
+  margin-left: -5px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  border: 1.5px solid #FF9900;
+}
+
+.browserInfo {
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+.circle {
+  transition-property: width, height, margin-left, margin-top;
+  transition-duration: 1.5s;
+  position: absolute;
+  bottom: 0;
+  top: 75%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 50%;
+  z-index: 9;
+}
+
+.dragAndDrop_container {
+  display: flex;
+  justify-content: center;
+  /*border: 2px solid #666;*/
+  margin: 15px 5px;
+}
+
+.dragAndDrop_itemsContainer, .dragAndDrop_chooses {
+  /*position: relative;*/
+  margin: 5px 5px;
+  /*display: inline-block;*/
+  /*vertical-align: top;*/
+  width: 40%;
+  height: 380px;
+  max-width: 200px;
+  border: 3px ridge cadetblue;
+  border-radius: 3px;
+}
+
+.dragAndDrop_chooses {
+  background: #99C0C3;
+}
+
+.dragAndDrop_itemsContainer {
+  background: #99C0C3;
+}
+
+.item {
+  font-size: 17px;
+  position: relative;
+  width: 110px;
+  padding: 9px 2px;
+  margin-left: -5px;
+  margin-bottom: 10px;
+  border: 4px ridge cadetblue;
+  border-radius: 25%;
+  text-align: center;
+  /*align-self: start;*/
+  background: #E0FFFF;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.item:hover {
+  transform: scale(1.1);
+}
+
+#mainImg {
+  border: solid 1px #FF9900;
+  border-radius: 10px;
+  min-width: 40%;
+  max-width: 95%;
+  height: 400px;
+  padding: 5px;
+}
+
+#picInfo a {
+  border: solid 1px #ccc;
+  width: 100px;
+  height: 100px;
+  padding: 3px;
+  margin: 2px;
+  float: left;
+  transition: ease-in-out 0.35s;
+}
+
+#picInfo a:hover {
+  border-color: #FF9900;
+  transform: skewY(-3deg) scale(1.15) ;
+}
+
+#picInfo li {
+  list-style: none;
+  /*display:table-cell;*/
+  text-align: center;
+  display: inline-block;
+}
+#picInfo ul {
+  display: inline-block;
+}
+
+#picInfo {
+  margin: 0;
+  padding: 0;
+}
+
+#rnSignature {
+  position: relative;
+  height: 20px;
+  width: 50px;
+  bottom: 5px;
+  left: 6.5px;
+  font: italic 16px sans-serif;
+}
+
+#trackInfo h3, h4 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+#parent {
+  outline: 1px solid #666;
+  background: #99C0C3;
+  width: 75%;
+  height: 250px;
+  position: relative;
+}
+
+#child {
+  background: #FFDE99;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#dragText {
+  margin-top: 10px;
+  height: 200px;
+  width: 90%;
+  max-width: 550px;
+  display: block;
+  resize: none;
+}
+
+#dragAndDropCheckBut {
+  width: 100px;
+  height: 40px;
+  background: #E0FFFF;
+  font-size: 14px;
+}
+
+#dragAndDropCheckBut:hover {
+  background: #ddd;
+}
+
+#trackExample {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  overflow: auto;
+  border: 10px solid black;
+  border-radius: 10px;
+  width: calc(100% - 50px);
+  max-width: 650px;
+  height: 300px;
+  padding: 10px
+}
+
+#drop-area {
+  position: relative;
+  border: 2px solid cadetblue;
+  border-radius: 20px;
+  /*width: 590px;*/
+  width: 75%;
+  margin: 30px auto;
+  padding: 10px;
+}
+
+#drop-area.highlight {
+  border: 4px double purple;
+  background: gainsboro;
+}
+
+.my-form {
+  font-family: sans-serif;
+  margin-bottom: 10px;
+}
+
+.my-form p {
+  margin-top: 0;
+  text-align: center;
+  font-size: large;
+}
+
+.drag-files-out {
+  border-top: 2px dashed #ccc;
+  padding-top: 30px;
+  margin-top: 25px;
+}
+
+.drag-files-out img {
+  position: relative;
+  width: 150px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  vertical-align: middle;
+  border: 1.5px solid cadetblue;
+  border-radius: 1.5px;
+  transition: ease-in-out 0.5s;
+  z-index: 0;
+}
+
+.drag-files-out textarea {
+  width: 350px;
+  max-width: 80%;
+  height: 150px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  vertical-align: middle;
+  font-size: 0.85em;
+  resize: none;
+  overflow: auto;
+  transition: ease-in-out 0.6s;
+}
+
+.drag-files-out:hover img , .drag-files-out:hover textarea {
+  transform: scale(0.85);
+}
+
+.drag-files-out img:hover {
+  z-index: 4;
+  padding: 1px;
+  border: 1px solid green;
+  transform: rotate(-10deg) scale(1.5) !important;
+}
+
+.drag-files-out textarea:hover {
+  z-index: 5;
+  transform: scale(1.35) !important;
+}
+
+.drag-button {
+  display: inline-block;
+  padding: 10px;
+  background: #E0FFFF;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 2px ridge cadetblue;
+  margin-right: 25px;
+}
+
+#hide-content-button {
+  margin: 0 auto;
+  margin-right: 5px;
+}
+
+.drag-button:hover {
+  background: #ddd;
+}
+
+#progress-bar {
+  display: inline-block;
+  margin: 0 auto;
+  width: 40%;
+  margin-top: 15px;
+}
+
+#progress-bar-error {
+  display: none;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  top: auto;
+  left: auto;
+  color: darkred;
+}
+
+.sideInfo {
+  position: fixed;
+  padding: 5px;
+  width: 335px;
+  height: 90px;
+  left: -345px;
+  top: calc(50% - 45px);
+  border-top: 1px solid darkblue;
+  border-bottom: 1px solid darkblue;
+  border-right: 25px solid midnightblue;
+  border-radius: 0 8px 8px 0;
+  transition: left ease-in-out 1s;
+  background: #E0FFFF;
+}
+
+.sideInfo img {
+  float: left;
+  margin: 3.5px 10px 0 0;
+  font-family: serif;
+  height: 80px;
+}
+
+.sideInfo:after {
+  content: 'Refference';
+  padding: 2px;
+  position: absolute;
+  top: 36px;
+  right: -57.5px;
+  color: yellow;
+  transform: rotate(-90deg);
+  font-family: serif;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sideInfo:hover {
+  left: 0;
+}
