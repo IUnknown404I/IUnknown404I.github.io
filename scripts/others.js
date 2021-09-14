@@ -5,8 +5,22 @@ function picInfoVisible(event) {
 }
 
 function closeOropenNav() {
-  document.getElementById("side").hidden = !document.getElementById("side").hidden;
-  document.getElementById("sideOpen").hidden = !document.getElementById("sideOpen").hidden;
+  // document.getElementById("side").hidden = !document.getElementById("side").hidden;
+  let sidebar = document.querySelector(".sidebar");
+
+  if(sidebar.style.marginLeft === '0px' || !sidebar.style.marginLeft) {
+    sidebar.style.marginLeft = '84px';
+  } else {
+    setTimeout(() => sidebar.style.marginLeft = '0px', 400);
+    // sidebar.style.marginLeft = '0px';
+  }
+
+  let sideOpener = document.getElementById("sideOpen");
+  if(sideOpener.style.marginLeft === '0px') {
+    sideOpener.style.marginLeft = '45px';
+  } else {
+    setTimeout(() => sideOpener.style.marginLeft = '0px', 700);
+  }
 }
 
 function mouseLog(event) {
